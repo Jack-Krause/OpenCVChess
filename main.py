@@ -24,6 +24,6 @@ for edge in edges:
     print(edge)
     
     
-drawn_img = lsd.drawSegments(img, lines[0])
-cv2.imshow("LSD", drawn_img)
-cv2.waitKey(0)
+drawn_img = lsd.drawSegments(img_gray, lines[0])
+plt.imshow(drawn_img, cmap="gray")
+plt.show()
