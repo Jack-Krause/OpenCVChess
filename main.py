@@ -2,6 +2,7 @@ import cv2
 from matplotlib import pyplot as plt
 import numpy as np
 from Line import Line  # assuming Line is defined as a dataclass
+import helper
 
 # Opening image
 img = cv2.imread("cb1.jpg")
@@ -42,7 +43,7 @@ if lines[0] is not None:
         drawn_img,
         (int(longest_line.x1), int(longest_line.y1)),
         (int(longest_line.x2), int(longest_line.y2)),
-        (255, 0, 0),   # blue color
+        (0, 0, 255),   # blue color
         2             # thicker line
     )
     
@@ -50,5 +51,24 @@ if lines[0] is not None:
     plt.imshow(drawn_img)
     plt.title("All Lines (green) with Longest Line Highlighted (blue)")
     plt.show()
+    
+    # try and find the grid
+    l = helper.find_grid(detected_lines)
+    if l is not None:
+        print(l.length())
+        cv2.line(
+            drawn_img,
+            (int(l.x1), int(l.y1)),
+            (int(l.x2), int (l.y2)),
+            (255, 255, 0),
+            3
+        )
+        
+        plt.imshow(drawn_img)
+        plt.title("found line")
+        plt.show()
+    
+    
+    
 else:
     print("No lines detected.")
