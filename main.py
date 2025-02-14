@@ -60,7 +60,7 @@ if lines[0] is not None:
             drawn_img,
             (int(l.x1), int(l.y1)),
             (int(l.x2), int (l.y2)),
-            (255, 255, 0),
+            (0, 0, 0),
             3
         )
         
