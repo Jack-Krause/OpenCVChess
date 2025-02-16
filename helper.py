@@ -80,6 +80,7 @@ def find_grid(line, x1_approx, y1_approx, x2_approx, y2_approx):
         if (x1_approx - 10) <= candidate.x1 <= (x1_approx + 10):
             print()
 
+
 def find_small_line(lines):
     if lines[0] is not None:
         for line in lines:
@@ -88,25 +89,47 @@ def find_small_line(lines):
 
 
 def find_square(img_rgb, width, height):
-    
+    fig, ax = plt.subplots(figsize=(8, 6))
 
+    ax.set_xlim(0, width)
+    ax.set_ylim(0, height)
 
-    for i in range(9, 0, -1):
-        range_x0 = 0 if i == 1 else width / (i - 1)
-        range_y0 = 0 if i == 1 else height / (i - 1)
+    rows, cols = 4, 4
+    r_width = width / cols
+    r_height = height / rows
+    partition = 1
 
+    for i in range(rows):
+        for j in range(cols):
+            x0 = round(j * r_width, 2)
+            y0 = round(i * r_height, 2)
 
-        range_xw = width / i
-        range_yh = height / i
+            print("***** Partition", partition)
+            print("(x, width):", f"({x0}, {r_width})")
+            print("(y, height):", f"({y0}, {r_height})")
+            print()
 
-        range_x0 = round(range_x0, 0)
-        range_y0 = round(range_y0, 0)
-        range_xw = round(range_xw, 0)
-        range_yh = round(range_yh, 0)
+            rect = patches.Rectangle(
+                (x0, y0), r_width, r_height,
+                linewidth=2, edgecolor=f"C{partition % 10}",
+                facecolor='none', label=f'Partition {partition}'
+            )
+            ax.add_patch(rect)
 
-        print("*" * 5, str(i) + ":")
-        print("(x, xw)", '(' + str(range_x0) + ", " + str(range_xw) + ')')
-        print("(y, yh)", '(' + str(range_y0) + ", " + str(range_yh) + ')')
-        print()
+            # Label the partition at its center
+            center_x = x0 + r_width / 2
+            center_y = y0 + r_height / 2
+            ax.text(center_x, center_y, str(partition),
+                    color='black', fontsize=12,
+                    ha='center', va='center')
 
+            partition += 1
 
+    ax.set_aspect('equal', adjustable='box')
+    ax.set_title("16 Partitions of the x, y Plane")
+    ax.set_xlabel("x")
+    ax.set_ylabel("y")
+
+    # Show the plot
+    plt.show()
+    plt.close(fig)

@@ -19,6 +19,3 @@ for f in os.listdir(directory):
         # helper.find_lines_plot(img_gray, img_rgb, n)
 
         helper.find_square(img_rgb, width, height)
-        break
-
-    break
