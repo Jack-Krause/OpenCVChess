@@ -53,7 +53,7 @@ def open_file(file, n):
         )
 
         # Display the result
-        plt.imsave("plots/unmeasuredlines/fig_unmeasured" + str(n) + ".png", drawn_img)
+        plt.imsave("plots/longest_lines/fig_longest_line" + str(n) + ".png", drawn_img)
         plt.imshow(drawn_img)
         plt.title("All Lines (green) with Longest Line Highlighted (blue)")
         plt.show()
@@ -70,7 +70,7 @@ def open_file(file, n):
                 3
             )
 
-            plt.imsave("plots/longestlines/fig_longest_line" + str(n) + ".png", drawn_img)
+            plt.imsave("plots/finding_lines/line_found" + str(n) + ".png", drawn_img)
             plt.imshow(drawn_img)
             plt.title("found line")
             plt.show()
