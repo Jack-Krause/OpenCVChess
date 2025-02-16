@@ -10,14 +10,8 @@ from matplotlib import pyplot as plt
 from Line import Line
 
 
-def open_file(file, n):
-    print("FILE IS", file)
+def open_file(img_gray, img_rgb, n):
     lsd = cv2.createLineSegmentDetector(0)
-
-    temp_img = cv2.imread(file)
-    img_gray = cv2.cvtColor(temp_img, cv2.COLOR_BGR2GRAY)
-    img_rgb = cv2.cvtColor(temp_img, cv2.COLOR_BGR2RGB)
-
     lines = lsd.detect(img_gray)
 
     if lines[0] is not None:
@@ -74,7 +68,6 @@ def open_file(file, n):
             plt.imshow(drawn_img)
             plt.title("found line in red")
             plt.show()
-
 
     else:
         print("No lines detected.")

@@ -1,12 +1,19 @@
 from Line import Line  # assuming Line is defined as a dataclass
 import helper
 import os
+import cv2
 
 directory = "images"
-files = []
 n = 0
 
 for f in os.listdir(directory):
-    n += 1
-    if os.path.isfile(os.path.join(directory, f)) and f.endswith(".jpg") or f.endswith(".webp"):
-        helper.open_file(os.path.join(directory, f), n)
+    file_path = os.path.join(directory, f)
+
+    if os.path.isfile(file_path) and f.endswith(".jpg") or f.endswith(".webp"):
+        n += 1
+        img = cv2.imread(file_path)
+        img_gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+        img_rgb = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+        width, height, _ = img.shape
+
+        helper.open_file(img_gray, img_rgb, n)
