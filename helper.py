@@ -7,10 +7,11 @@ Created on Sun Feb  9 14:47:53 2025
 from Line import Line
 import cv2
 from matplotlib import pyplot as plt
+from matplotlib import patches as patches
 from Line import Line
 
 
-def open_file(img_gray, img_rgb, n):
+def find_lines_plot(img_gray, img_rgb, n):
     lsd = cv2.createLineSegmentDetector(0)
     lines = lsd.detect(img_gray)
 
@@ -53,7 +54,7 @@ def open_file(img_gray, img_rgb, n):
         plt.show()
 
         # try and find the grid
-        l = find_grid(detected_lines)
+        l = find_small_line(detected_lines)
         if l is not None:
             print(l.length())
             cv2.line(
@@ -73,19 +74,39 @@ def open_file(img_gray, img_rgb, n):
         print("No lines detected.")
 
 
-def find_line(line, x1_approx, y1_approx, x2_approx, y2_approx):
+def find_grid(line, x1_approx, y1_approx, x2_approx, y2_approx):
     l = line.length()
     for candidate in line:
         if (x1_approx - 10) <= candidate.x1 <= (x1_approx + 10):
             print()
 
-def find_grid(lines):
+def find_small_line(lines):
     if lines[0] is not None:
         for line in lines:
             if line.length() > 10 and line.length() < 100:
                 return line
 
 
-def find_square(line):
-    if line is not None:
+def find_square(img_rgb, width, height):
+    
+
+
+    for i in range(9, 0, -1):
+        range_x0 = 0 if i == 1 else width / (i - 1)
+        range_y0 = 0 if i == 1 else height / (i - 1)
+
+
+        range_xw = width / i
+        range_yh = height / i
+
+        range_x0 = round(range_x0, 0)
+        range_y0 = round(range_y0, 0)
+        range_xw = round(range_xw, 0)
+        range_yh = round(range_yh, 0)
+
+        print("*" * 5, str(i) + ":")
+        print("(x, xw)", '(' + str(range_x0) + ", " + str(range_xw) + ')')
+        print("(y, yh)", '(' + str(range_y0) + ", " + str(range_yh) + ')')
         print()
+
+

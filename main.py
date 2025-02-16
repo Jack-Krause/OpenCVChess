@@ -16,4 +16,9 @@ for f in os.listdir(directory):
         img_rgb = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
         width, height, _ = img.shape
 
-        helper.open_file(img_gray, img_rgb, n)
+        # helper.find_lines_plot(img_gray, img_rgb, n)
+
+        helper.find_square(img_rgb, width, height)
+        break
+
+    break
