@@ -4,10 +4,9 @@ import os
 
 directory = "images"
 files = []
+n = 0
 
 for f in os.listdir(directory):
+    n += 1
     if os.path.isfile(os.path.join(directory, f)) and f.endswith(".jpg") or f.endswith(".webp"):
-        helper.open_file(os.path.join(directory, f))
-        
-
-
+        helper.open_file(os.path.join(directory, f), n)

@@ -10,7 +10,7 @@ from matplotlib import pyplot as plt
 from Line import Line
 
 
-def open_file(file):
+def open_file(file, n):
     print("FILE IS", file)
     lsd = cv2.createLineSegmentDetector(0)
 
@@ -53,6 +53,7 @@ def open_file(file):
         )
 
         # Display the result
+        plt.imsave("plots/unmeasuredlines/fig_unmeasured" + str(n) + ".png", drawn_img)
         plt.imshow(drawn_img)
         plt.title("All Lines (green) with Longest Line Highlighted (blue)")
         plt.show()
@@ -69,9 +70,11 @@ def open_file(file):
                 3
             )
 
+            plt.imsave("plots/longestlines/fig_longest_line" + str(n) + ".png", drawn_img)
             plt.imshow(drawn_img)
             plt.title("found line")
             plt.show()
+
 
     else:
         print("No lines detected.")
