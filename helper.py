@@ -66,13 +66,13 @@ def open_file(file, n):
                 drawn_img,
                 (int(l.x1), int(l.y1)),
                 (int(l.x2), int(l.y2)),
-                (0, 0, 0),
+                (255, 0, 0),
                 3
             )
 
             plt.imsave("plots/finding_lines/line_found" + str(n) + ".png", drawn_img)
             plt.imshow(drawn_img)
-            plt.title("found line")
+            plt.title("found line in red")
             plt.show()
 
 
