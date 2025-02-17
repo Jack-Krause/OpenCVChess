@@ -94,9 +94,9 @@ def find_square(img_rgb, width, height):
     ax.imshow(img_rgb)
 
     ax.set_xlim(0, width)
-    ax.set_ylim(height, 0)
+    ax.set_ylim(0, height)
 
-    rows, cols = 4, 4
+    rows, cols = 5, 5
     r_width = width / cols
     r_height = height / rows
     partition = 1
