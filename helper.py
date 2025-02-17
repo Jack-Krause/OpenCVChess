@@ -91,8 +91,10 @@ def find_small_line(lines):
 def find_square(img_rgb, width, height):
     fig, ax = plt.subplots(figsize=(8, 6))
 
+    ax.imshow(img_rgb)
+
     ax.set_xlim(0, width)
-    ax.set_ylim(0, height)
+    ax.set_ylim(height, 0)
 
     rows, cols = 4, 4
     r_width = width / cols
